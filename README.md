@@ -49,7 +49,7 @@ aws secretsmanager create-secret \
   --secret-string '{"username":"admin","password":"supersecure123"}'
 ```
 
-## 1. 📝 Create and Enable CloudTrail
+### 1. 📝 Create and Enable CloudTrail
 ```bash
 aws cloudtrail create-trail \
   --name SecretsAccessTrail \
@@ -59,7 +59,7 @@ aws cloudtrail create-trail \
 aws cloudtrail start-logging \
   --name SecretsAccessTrail
 ```
-## 2. 🔗 Integrate CloudTrail with CloudWatch Logs
+### 2. 🔗 Integrate CloudTrail with CloudWatch Logs
 ```bash
 aws logs create-log-group \
   --log-group-name CloudTrail/SecretsLogs
@@ -69,7 +69,7 @@ aws cloudtrail create-subscription \
   --log-group-name CloudTrail/SecretsLogs \
   --role-arn arn:aws:iam::<ACCOUNT_ID>:role/CloudTrailCloudWatchLogsRole
 ```
-## 3. 🔎 Create a Metric Filter for Secret Access
+### 3. 🔎 Create a Metric Filter for Secret Access
 ```bash
 aws logs put-metric-filter \
   --log-group-name CloudTrail/SecretsLogs \
@@ -91,7 +91,7 @@ aws cloudwatch put-metric-alarm \
   --evaluation-periods 1 \
   --alarm-actions arn:aws:sns:<REGION>:<ACCOUNT_ID>:SecretsAlertTopic
 ```
-## 5. 🔔 Create SNS Topic and Subscribe
+### 5. 🔔 Create SNS Topic and Subscribe
 ```bash
 aws sns create-topic \
   --name SecretsAlertTopic
@@ -101,32 +101,19 @@ aws sns subscribe \
   --protocol email \
   --notification-endpoint your-email@example.com
 ```
-## 📧 Check your email inbox and confirm the SNS subscription.
+### 📧 Check your email inbox and confirm the SNS subscription.
+![image](https://github.com/user-attachments/assets/96622da5-7bbb-4a1e-a264-2bec9f46abea)
 
-## ⚡ Bonus: Add Secondary Alerting
-You can enhance this system by adding an additional notification channel using:
+### 📷 Screenshots
 
-🧠 AWS Lambda
+#### CloudWatch Alarm triggering
+![image](https://github.com/user-attachments/assets/f654aaec-564a-4f95-9e1e-edab1ec6a63d)
 
-🧠 Amazon EventBridge
+#### SNS Email Notification
+![image](https://github.com/user-attachments/assets/cf3ad8d7-a270-44d7-899e-83d0e46cffb7)
 
-📩 Slack/Telegram Webhooks
-
-💡 Compare the two systems for:
-
-Response time
-
-Flexibility
-
-Reliability
-
-## 📷 Screenshots
-
-CloudWatch Alarm triggering
-
-SNS Email Notification
-
-CloudTrail Event Log showing secret access
+#### CloudTrail Event Log showing secret access
+![Screenshot 2025-05-13 163845](https://github.com/user-attachments/assets/a6b22bdb-b5e1-49d0-9550-c1c1317c99b7)
 
 ## 🎓 Learning Outcomes
 ✅ Master the AWS Monitoring and Alerting Stack
