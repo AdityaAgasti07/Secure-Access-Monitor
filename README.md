@@ -78,7 +78,7 @@ aws logs put-metric-filter \
       metricName=SecretAccessCount,metricNamespace=SecretsMonitor,metricValue=1 \
   --filter-pattern '{ ($.eventName = GetSecretValue) }'
 ```
-## 4. 🚨 Set Up a CloudWatch Alarm
+### 4. 🚨 Set Up a CloudWatch Alarm
 ```bash
 aws cloudwatch put-metric-alarm \
   --alarm-name SecretAccessAlarm \
