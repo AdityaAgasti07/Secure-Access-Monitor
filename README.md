@@ -1,4 +1,4 @@
-# SecureAccessMonitor 🚨🔐  
+# Secure-Access-Monitor 🚨🔐  
 **Real-Time Secret Access Monitoring System Using AWS Secret, CloudTrail, CloudWatch & SNS**
 
 ---
